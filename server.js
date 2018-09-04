@@ -31,15 +31,15 @@ app.use(function (req, res, next) {
   next();
 });
 // Enter your code below this line.
-app.use('/country',countryRouter)
-app.use('/state',stateRouter)
-app.use('/city',cityRouter)
-app.use('/hostels',hostelRouter)
-app.use('/hostel',hostelRouter)
-app.use('/college',collegeRouter)
-app.use('/colleges',collegeRouter)
-app.use('/students',studentRouter)
-app.use('/student',studentRouter)
+app.use('/api/country',countryRouter)
+app.use('/api/state',stateRouter)
+app.use('/api/city',cityRouter)
+app.use('/api/hostels',hostelRouter)
+app.use('/api/hostel',hostelRouter)
+app.use('/api/college',collegeRouter)
+app.use('/api/colleges',collegeRouter)
+app.use('/api/students',studentRouter)
+app.use('/api/student',studentRouter)
 
 app.listen(port, () => {
   console.log(`Starting on port ${port}`)

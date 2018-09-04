@@ -1,0 +1,31 @@
+<div class="well">
+  <h5 class="card-subtitle mb2 text-muted">Add or Update Country</h5>
+  <input type="text" class="form-control" [(ngModel)]="countryModel.name" #addCountryInput="ngModel" required placeholder="Name of the Country">  
+  <button type="button" class="btn btn-primary" (click)="addCountry()" [disabled]="!addCountryInput.valid">Add Country</button>
+</div>
+<h4>List of added Countries</h4>
+<div *ngIf="countries.length!=0">
+    <table class="table">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Country</th>
+          <th>Is Active</th>
+          <th>Update</th>
+          <th>Disable</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let country of countries;let i = index' >
+          <td>{{ country.name }}</td>
+          <td>{{ country.activeStatus }}</td>
+          <td><button class="btn btn-info" (click)='updateCountry(country)' [disabled]="!addCountryInput.valid">Update</button></td>
+          <td>
+            <button class="btn btn-danger" (click)='disableCountry(country)' *ngIf="country.activeStatus">Disable</button>
+            <button class="btn btn-primary" (click)='enableCountry(country)' *ngIf="!country.activeStatus" >Enable</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<!--Countries functionality completed-->

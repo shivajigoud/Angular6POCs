@@ -1,0 +1,42 @@
+<p>
+  <a [routerLink]="['../show']"><<- Back</a>
+</p>
+<div class="well">
+    <h5 class="card-subtitle mb2 text-muted">Add or Update Hostel</h5>
+    <div class="row">
+      <div class="col-sm-6">
+        <input type="text" class="form-control" [(ngModel)]="hostelModel.name" #addHostelInput="ngModel" required placeholder="Name of the Hostel">
+      </div>
+    <div class="col-sm-6">
+        <input type="search" [ngModel]="searchHostel" #searchHostelInput class="form-control" placeholder="Search Hostel" />
+    </div>
+  </div>
+      
+    <button type="button" class="btn btn-primary" (click)="addHostel()" [disabled]="!addHostelInput.valid">Add Hostel</button>
+  </div>
+  <h4>List of added Hostels</h4>
+  <div *ngIf="hostels.length!=0">
+      <table class="table">
+        <thead class="thead-inverse">
+          <tr>
+            <th>Hostel</th>
+            <th>Is Active</th>
+            <th>Update</th>
+            <th>Disable</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let hostel of hostels;let i = index' >
+            <td>{{ hostel.name }}</td>
+            <td>{{ hostel.activeStatus }}</td>
+            <td><button class="btn btn-info" (click)='updateHostel(hostel)' [disabled]="!addHostelInput.valid">Update</button></td>
+            <td>
+              <button class="btn btn-danger" (click)='disableHostel(hostel)' *ngIf="hostel.activeStatus">Disable</button>
+              <button class="btn btn-primary" (click)='enableHostel(hostel)' *ngIf="!hostel.activeStatus" >Enable</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <!--hostels functionality completed-->

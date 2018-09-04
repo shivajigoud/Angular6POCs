@@ -1,0 +1,78 @@
+<div class="well">
+  <button type="button" class="btn btn-primary" (click)="openModal(modalId)">Add College</button>
+  <input type="search" [ngModel]="searchCollege" #searchCollegeInput class="form-control" placeholder="Search Colleges" />
+</div>
+<div *ngIf="colleges.length!=0">
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>College</th>
+        <th>Is Active</th>
+        <th>Update</th>
+        <th>Disable</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let college of colleges;let i = index'>
+        <td>
+          <a (click)='goToCollege(college._id)'>{{ college.name }}</a>
+          <!-- <a routerLink='college/{{college._id}}'>{{ college.name }}</a> -->
+          <!-- <router-outlet></router-outlet> -->
+        </td>
+        <td>{{ college.activeStatus }}</td>
+        <td><button class="btn btn-info" (click)='editCollege(college)' >Edit</button></td>
+        <td>
+          <button class="btn btn-danger" (click)='disableCollege(college)' *ngIf="collegeModel.activeStatus">Disable</button>
+          <button class="btn btn-primary" (click)='enableCollege(college)' *ngIf="!collegeModel.activeStatus">Enable</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- adding a college code-->
+<app-modalpopup id="{{ modalId }}" class="app-modalpopup">
+  <h4>Add a College</h4>
+  <div class="row">
+    <div class="col-sm-6">
+      <input type="text" [(ngModel)]="collegeModel.name" placeholder="Enter College Name" #collegeName="ngModel" class="form-control" required/>
+      <input type="text" [(ngModel)]="collegeModel.addressLine1" placeholder="Enter Address Lane1" #collegeAddressLine1="ngModel"
+        class="form-control" required/>
+      <input type="text" [(ngModel)]="collegeModel.addressLine2" placeholder="Enter Address Lane2" #collegeAddressLine2="ngModel"
+        class="form-control" />
+    </div>
+    <div class="col-sm-6">
+      <select [(ngModel)]="collegeModel.country" class="form-control" #addCountrySelect="ngModel" (change)="onCountryChange(addCountrySelect.value)"
+        required>
+        <option value="{{ collegeModel.country }}" selected disabled>Select Country...</option>
+        <option *ngFor='let country of countries;let i = index' [ngValue]="country._id">
+          {{ country.name }}
+        </option>
+      </select>
+      <span>You slected {{ selectedCountry.name }} as your country</span>
+      <select [(ngModel)]="collegeModel.state" class="form-control" #addStateSelect="ngModel" (change)="onStateChange(addStateSelect.value)"
+        required>
+        <option value="{{ collegeModel.state }}" selected disabled>Select State...</option>
+        <option *ngFor='let state of states;let i = index' [ngValue]="state._id">
+          {{ state.name }}
+        </option>
+      </select>
+      <span>You slected {{ selectedState.name }} as your state</span>
+      <select [(ngModel)]="collegeModel.city" class="form-control" #addCitySelect="ngModel" required (click)="onCityChange(addCitySelect.value)">
+        <option value="{{ collegeModel.city }}" selected disabled>Select City...</option>
+        <option *ngFor='let city of cities;let i = index' [ngValue]="city._id">
+          {{ city.name }}
+        </option>
+      </select>
+      <span>You slected {{ selectedCity.name }} as your city</span>
+    </div>
+  </div>
+  <div>
+    <button (click)="closeModal(modalId)" class="btn btn-warning" type="button">Close</button>
+    <button class="btn btn-info" (click)='updateCollege(collegeModel._id)' *ngIf="editMode" 
+    type="button" [disabled]="!collegeName.valid || !collegeAddressLine1.valid || !addCountrySelect.valid || !addStateSelect.valid || !addCitySelect.valid">Update</button>
+    <button (click)="addCollege()" class="btn btn-primary" *ngIf="!editMode" 
+    type="button" [disabled]="!collegeName.valid || !collegeAddressLine1.valid || !addCountrySelect.valid || !addStateSelect.valid || !addCitySelect.valid">Submit</button>
+  </div>
+
+</app-modalpopup>

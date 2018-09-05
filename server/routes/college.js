@@ -3,7 +3,7 @@ var router = express.Router();
 var College = require('../models/College');
 
 router.get('/',function(req,res,next){
-    College.find({}).exec((err,colleges)=>{
+    College.find({}).populate({path:'city'}).exec((err,colleges)=>{
         if(err){
             res.status(500).json({
                 status:-1,

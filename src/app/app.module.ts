@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
+import { SharedModule } from './shared/shared.module';
+
 import { appRouting } from './app-route/app-route.module';
 import { NavComponent } from './nav/nav.component';
 
@@ -12,14 +14,14 @@ import { NavComponent } from './nav/nav.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
-    //CollegeComponent
+    NavComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    appRouting
+    appRouting,
+    SharedModule
   ],
   providers: [ 
     //ServicesService 

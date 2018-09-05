@@ -1,5 +1,5 @@
-<div class="well">
-<h5>Select Country to Add or Update state </h5>
+<div class="well col-sm-3">
+<h5>Select country to add or update state </h5>
 <select [(ngModel)]="selectedCountry" class="form-control"  #addCountrySelect="ngModel" (change)="onCountryChange(selectedCountry._id)" required >
     <!-- <option *ngFor='let country of countries;let i = index' [ngValue]="country" [attr.selected]="i==0?selected:''"> -->
   <option value="Select Country" selected disabled>Select Country...</option>
@@ -11,21 +11,24 @@
 <input type="text" class="form-control" [(ngModel)]="newState" #addStateInput="ngModel" required>  
 <button type="button" class="btn btn-primary" (click)="addState(selectedCountry._id)" [disabled]="!addCountrySelect.dirty || !addStateInput.valid">Add State</button>
 </div>
-<div *ngIf="states.length!=0">
+<div class="col-sm-9">
+    <h4>List of added States</h4>
     <table class="table">
       <thead class="thead-inverse">
         <tr>
           <th>State</th>
           <th>Is Active</th>
+          <th>Country</th>
           <th>Update</th>
           <th>Disable</th>
           
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="states.length!=0">
         <tr *ngFor='let state of states;let i = index' >
           <td>{{ state.name }}</td>
           <td>{{ state.activeStatus }}</td>
+          <td>{{ state.country.name }}</td>
           <td><button class="btn btn-info" (click)='updateState(state)' [disabled]="!addCountrySelect.dirty || !addStateInput.valid">Update</button></td>
           <td>
             <button class="btn btn-danger" (click)='disableState(state)' *ngIf="state.activeStatus">Disable</button>

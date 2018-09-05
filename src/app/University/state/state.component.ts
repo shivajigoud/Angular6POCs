@@ -11,9 +11,6 @@ export class StateComponent implements OnInit {
   countries=[];states=[];selectedCountry='Select Country';
   newCountry='';newState='';
   constructor(private universityService:ServicesService) { 
-    
-  }
-  ngOnInit() {
     this.universityService.getCountries().subscribe((result)=>{
       console.log(...result.countries);
       this.countries = result.countries.filter((country)=>{
@@ -21,6 +18,12 @@ export class StateComponent implements OnInit {
          //return country
       });
       //this.countries.unshift(this.selectedCountry);
+    })
+  }
+  ngOnInit() {
+    this.universityService.getAllStates().subscribe((result)=>{
+      this.states=result.states;
+      
     })
   }
   onCountryChange(countryId){

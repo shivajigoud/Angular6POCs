@@ -17,8 +17,18 @@ export class ServicesService {
              .pipe(map((data)=>{return data.json()}))
               
    }
+   getAllStates(){
+    return this.http.get('/api/state')
+             .pipe(map((data)=>{return data.json()}))
+              
+   }
   getCities(byState){
     return this.http.get('/api/city/'+byState)
+             .pipe(map((data)=>{return data.json()}))
+              
+   }
+   getAllCities(){
+    return this.http.get('/api/city')
              .pipe(map((data)=>{return data.json()}))
               
    }

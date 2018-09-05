@@ -20,6 +20,24 @@ router.get('/:state',function(req,res,next){
         }
     })
 })
+router.get('/',function(req,res,next){
+    City.find({}).populate({path:'state',populate:{path:'country'}}).exec((err,cities)=>{
+        if(err){
+            res.status(500).json({
+                status:-1,
+                message:'An error occured',
+                error:err
+            })
+        }
+        else{
+            res.status(200).json({
+                status:0,
+                message:'fetching cities info success',
+                cities:cities
+            })
+        }
+    })
+})
 router.post('/',(req,res,next)=>{
     var city = new City({
         name:req.body.name,

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
 
 import { FormsModule } from '@angular/forms';
 import { UniversityRouteModule } from './university-route/university-route.module';
@@ -20,7 +21,8 @@ import { StudentsComponent } from './students/students.component';
   imports: [
     CommonModule,
     FormsModule,
-    UniversityRouteModule
+    UniversityRouteModule,
+    SharedModule
   ],
   declarations: [ 
     CollegeComponent, 
@@ -32,7 +34,7 @@ import { StudentsComponent } from './students/students.component';
     ModalpopupComponent, 
     CollegeLandingComponent, 
     HostelsComponent, 
-    StudentsComponent 
+    StudentsComponent
   ],
   providers:[ ServicesService, ModalServiceService ]
 })

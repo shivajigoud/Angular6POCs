@@ -11,10 +11,6 @@ export class CityComponent implements OnInit {
   selectedCountry='Select Country';selectedState='Select State';selectedCity='';
   newCountry='';newState='';newCity='';
   constructor(private universityService:ServicesService) { 
-    
-  }
-
-  ngOnInit() {
     this.universityService.getCountries().subscribe((result)=>{
       console.log(...result.countries);
       this.countries = result.countries.filter((country)=>{
@@ -22,6 +18,13 @@ export class CityComponent implements OnInit {
         // return country
       });
       
+    })
+  }
+
+  ngOnInit() {
+    
+    this.universityService.getAllCities().subscribe((result)=>{
+      this.cities=result.cities;
     })
   }
   onCountryChange(countryId){

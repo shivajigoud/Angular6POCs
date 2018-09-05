@@ -1,11 +1,12 @@
-<p>
-    <a [routerLink]="['../show']"><<- Back</a>
-  </p>
-<div class="well">
+
+<div class="well col-sm-3">
     <button type="button" class="btn btn-primary" (click)="openModal(modalId)">Add Student</button>
     <input type="search" [ngModel]="searchStudent" #searchStudentInput class="form-control" placeholder="Search Students" />
   </div>
-  <div *ngIf="students.length!=0">
+  <div class="col-sm-9">
+      <p>
+          <a [routerLink]="['../show']" class="back-button">&#8249;&#8249; Back</a> </p> 
+      <h4>List of added Students</h4>
     <table class="table">
       <thead class="thead-inverse">
         <tr>
@@ -16,7 +17,7 @@
   
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="students.length!=0" >
         <tr *ngFor='let student of students;let i = index'>
           <td>{{ student.name }}
           </td>

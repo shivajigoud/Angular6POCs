@@ -9,7 +9,7 @@
         <a class="navbar-brand" href="#">Angular JS Examples</a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav" [appDynamicAddClass]="dynamicEle">
           <li ><a routerLink='/university'>University POC</a></li>
           <li><a routerLink='/ngrxpoc'>Ngrx POC</a></li>
         </ul>

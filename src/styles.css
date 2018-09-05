@@ -10,9 +10,43 @@
     background: rgba(233, 234, 236, 0.24);
     }
 .card{
-        border-radius: 10px;
+    border-radius: 10px;
     border: 1px solid rgba(142, 171, 178, 0.22);
     padding: 15px;
     background: rgba(158, 170, 175, 0.06);
     margin: 10px 0;
     }
+app-university .nav.nav-pills {
+    background: rgba(255, 249, 36, 0.4);
+    border-radius: 5px;
+    border: 1px solid rgba(233, 229, 106, 0.9);
+}
+app-university .nav.nav-pills a{
+   color: #737013;
+}
+app-university .nav>li>a:focus, app-university .nav>li>a:hover,app-university .nav>li.active>a,app-university .nav>li.active>a:hover{
+    text-decoration: none;
+    background-color: #f7e961;
+}
+app-university .row {
+   margin:10px 0
+}
+app-university .thead-inverse {
+    background:black;
+    color:white;
+ }
+ app-university input,app-university buttton,app-university select{
+     margin:5px 0;
+ }
+ app-university .back-button {
+    background: rgb(65, 55, 56);
+    border-radius: 3px;
+    display: inline-block;
+    padding: 0px 50px;
+    color: white;
+ }
+ app-university .college-name{
+     color: rgb(159, 85, 38);
+     font-size: 1em;
+     margin: 0;
+ }

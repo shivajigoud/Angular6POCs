@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./university-nav.component.css']
 })
 export class UniversityNavComponent implements OnInit {
-
+  dynmicEle="li";
   constructor() { }
 
   ngOnInit() {

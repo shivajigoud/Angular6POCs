@@ -1,10 +1,11 @@
-<div class="well">
+<div class="well col-sm-3">
   <h5 class="card-subtitle mb2 text-muted">Add or Update Country</h5>
   <input type="text" class="form-control" [(ngModel)]="countryModel.name" #addCountryInput="ngModel" required placeholder="Name of the Country">  
   <button type="button" class="btn btn-primary" (click)="addCountry()" [disabled]="!addCountryInput.valid">Add Country</button>
 </div>
-<h4>List of added Countries</h4>
-<div *ngIf="countries.length!=0">
+
+<div  class="col-sm-9">
+    <h4>List of added Countries</h4>
     <table class="table">
       <thead class="thead-inverse">
         <tr>
@@ -15,7 +16,7 @@
           
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="countries.length!=0">
         <tr *ngFor='let country of countries;let i = index' >
           <td>{{ country.name }}</td>
           <td>{{ country.activeStatus }}</td>

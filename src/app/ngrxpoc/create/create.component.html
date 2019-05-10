@@ -1,0 +1,11 @@
+<div class="col-sm-4">
+  <form #todoTutForm="ngForm" (ngSubmit)='addTutorial(name,url)' class="form-row">
+    <div class="cal-auto">
+      <input type="text" #name="ngModel" [(ngModel)]="model.name" placeholder="Name  of the  tutorial" required name="name"
+        pattern="^[a-zA-Z0-9 ]+$" class="form-control" />
+    </div>
+    <div class="cal-auto"><input type="text" #url="ngModel" [(ngModel)]="model.url" placeholder="URI  of the  tutorial"
+        required pattern="^[a-z]{4,5}[:\/\/]{3}[www]{3}[\.]{1}[a-z]+[\.]{1}[a-z0-9.]{1,6}$" name="url" class="form-control" />
+    </div><button type="submit" [disabled]="!todoTutForm.valid" class="btn btn-primary">Add Tutorial</button>
+  </form>
+</div>

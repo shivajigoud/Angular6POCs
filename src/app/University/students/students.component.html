@@ -1,0 +1,89 @@
+
+<div class="well col-sm-3">
+    <button type="button" class="btn btn-primary" (click)="openModal(modalId)">Add Student</button>
+    <input type="search" [ngModel]="searchStudent" #searchStudentInput class="form-control" placeholder="Search Students" />
+  </div>
+  <div class="col-sm-9">
+      <p>
+          <a [routerLink]="['../show']" class="back-button">&#8249;&#8249; Back</a> </p> 
+      <h4>List of added Students</h4>
+    <table class="table">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Student</th>
+          <th>Is Active</th>
+          <th>Update</th>
+          <th>Disable</th>
+  
+        </tr>
+      </thead>
+      <tbody *ngIf="students.length!=0" >
+        <tr *ngFor='let student of students;let i = index'>
+          <td>{{ student.name }}
+          </td>
+          <td>{{ student.activeStatus }}</td>
+          <td><button class="btn btn-info" (click)='editStudent(student)' >Edit</button></td>
+          <td>
+            <button class="btn btn-danger" (click)='disableStudent(student)' *ngIf="studentModel.activeStatus">Disable</button>
+            <button class="btn btn-primary" (click)='enableStudent(student)' *ngIf="!studentModel.activeStatus">Enable</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- adding a student code-->
+  <app-modalpopup id="{{ modalId }}" class="app-modalpopup">
+    <h4>Add a Student</h4>
+    <div class="row">
+        <div class="col-sm-4 pic">
+          <img [src] = "studentModel.pic" class="student-pic" >
+            <input type="file" 
+                    [(ngModel)]="studentModel.photo" 
+                    placeholder="Take Pciture" 
+                    #studentPhoto="ngModel" 
+                    class="form-control" 
+                    required
+                    onclick="this.value = null" (change)="onFileChange($event)" 
+                    />
+           
+          </div>
+      <div class="col-sm-4">
+        <input type="text" [(ngModel)]="studentModel.name" placeholder="Enter Student Name" #studentName="ngModel" class="form-control" required/>
+        <input type="number" [(ngModel)]="studentModel.rollno" placeholder="Enter Roll Number" #studentRollNo="ngModel"
+          class="form-control" required/>
+        <input type="text" [(ngModel)]="studentModel.dob" placeholder="Enter Date of Birth" #studentDob="ngModel"
+          class="form-control" required/>
+        <input type="number" [(ngModel)]="studentModel.mobileNumber" placeholder="Enter Mobile Number" #studentMobileNumber="ngModel"
+          class="form-control" required/>
+      </div>
+      <div class="col-sm-4">
+       <select [(ngModel)]="studentModel.year" class="form-control" #studentYearOfStudy="ngModel" 
+          required>
+          <option value="{{ studentModel.year }}" selected disabled>Select Year...</option>
+          <option *ngFor='let year of yearsOfStudies;let i = index' [ngValue]="year">
+            {{ year }}
+          </option>
+        </select>
+        <select [(ngModel)]="studentModel.hostel" class="form-control" #addHostelSelect="ngModel" required (click)="onHostelChange(addHostelSelect.value)">
+          <option value="{{ studentModel.hostel }}" selected disabled>Select Hostel...</option>
+          <option *ngFor='let hostel of hostels;let i = index' [ngValue]="hostel._id">
+            {{ hostel.name }}
+          </option>
+        </select>
+        <span>You slected {{ selectedHostel.name }} as your hostel</span>
+        <input type="text" [(ngModel)]="studentModel.email" placeholder="Enter email Id if any" #studentEmail="ngModel"
+          class="form-control" required/>
+          <input type="text" [(ngModel)]="studentModel.yearOfJoining" placeholder="Enter year Of joining" #studentYearOfJoining="ngModel"
+          class="form-control" required/>
+      </div>
+    </div>
+    <div>
+      <button (click)="closeModal(modalId)" class="btn btn-warning" type="button">Close</button>
+      <button class="btn btn-info" (click)='updateStudent(studentModel._id)' *ngIf="editMode" 
+      type="button" [disabled]="!studentName.valid || !studentRollNo.valid || !studentDob.valid || !studentMobileNumber.valid || !studentYearOfStudy.valid || !addHostelSelect.valid">Update</button>
+      <button (click)="addStudent()" class="btn btn-primary" *ngIf="!editMode" 
+      type="button" [disabled]="!studentName.valid || !studentRollNo.valid || !studentDob.valid || !studentMobileNumber.valid || !studentYearOfStudy.valid || !addHostelSelect.valid">Submit</button>
+    </div>
+  
+  </app-modalpopup>
+  

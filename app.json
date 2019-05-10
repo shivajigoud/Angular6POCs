@@ -1,0 +1,23 @@
+{
+  "name": "MEAN POC1",
+  "description": "MEAN POC with Angular 6 and NGRX",
+  "keywords": [
+    "MEAN",
+    "Angular",
+    "Node",
+    "MongoDB",
+    "mLab",
+    "NGRX"
+  ],
+  "repository": "https://github.com/shivajigoud/Angular6POCs/tree/develop",
+  "success_url": "/",
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "addons": [
+    "mongolab"
+  ]
+}

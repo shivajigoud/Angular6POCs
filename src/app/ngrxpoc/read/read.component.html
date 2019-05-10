@@ -1,0 +1,25 @@
+<div class="col-sm-8">
+    <table class="table">
+        <thead class="thead-inverse">
+          <tr>
+            <th>Tutorail#</th>
+            <th>Tutorial Name</th>
+            <th>Tutorial Link</th>
+            
+          </tr>
+        </thead>
+        <tbody *ngIf="tutorials.length!=0">
+          <tr *ngFor='let tutorial of tutorials | async' >
+            <td>{{ tutorial.id }}</td>
+            <td>{{ tutorial.name }}</td>
+            <td><a [href]='tutorial.url' target='_blank'>{{ tutorial.url }}</a></td>
+           
+          </tr>
+        </tbody>
+      </table>
+  <!-- <ul>
+    <li *ngFor='let tutorial of tutorials | async'>
+      <a [href]='tutorial.url' target='_blank'>{{ tutorial.name }}</a>
+    </li>
+  </ul> -->
+</div>
